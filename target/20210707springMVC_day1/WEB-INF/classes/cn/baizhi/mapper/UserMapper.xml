@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.baizhi.dao.UserDao">
+
+<!--    void insertUser(User user);-->
+    <insert id="insertUser" parameterType="cn.baizhi.entity.User">
+        insert into user values (#{username},#{trustname},#{password},#{sex})
+    </insert>
+
+<!--    List<User> selectAll();-->
+    <select id="selectAll" resultType="cn.baizhi.entity.User" parameterType="cn.baizhi.entity.User">
+        select username,trustname,password,sex from user
+        <where>
+            <if test="username!=null">
+                and username = #{username}
+            </if>
+        </where>
+    </select>
+
+</mapper>

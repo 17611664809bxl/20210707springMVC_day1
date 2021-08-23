@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.baizhi.dao.EmpDao2">
+
+    <!--    List<Emp> selectAll(Emp emp);-->
+    <select id="selectAll" parameterType="cn.baizhi.entity.Emp" resultType="cn.baizhi.entity.Emp">
+        select id,name,salary,age from emp
+        <where>
+            <if test="id!=null">
+                and id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <!--    void updateEmp();-->
+    <update id="updateEmp" parameterType="cn.baizhi.entity.Emp">
+        update `ssm2`.`emp` set `name`=#{name}, `salary`=#{salary}, `age`=#{age} where id = #{id}
+    </update>
+
+    <insert id="insertEmp" parameterType="cn.baizhi.entity.Emp">
+        INSERT INTO `ssm2`.`emp` (`id`, `name`, `salary`, `age`) VALUES (#{id}, #{name}, #{salary}, #{age});
+    </insert>
+
+    <!--    void deleteEmp();-->
+    <delete id="deleteEmp" parameterType="java.lang.String">
+        delete from emp where id = #{id}
+    </delete>
+
+</mapper>

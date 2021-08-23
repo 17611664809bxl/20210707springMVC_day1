@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--    <context:component-scan base-package="cn.baizhi.controller"/>-->
+    <context:component-scan base-package="cn.baizhi" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <mvc:annotation-driven/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <mvc:default-servlet-handler/>
+
+    <!--    管理拦截器-->
+    <bean class="cn.baizhi.interception.LoginInterceptor" id="loginInterceptor"/>
+
+    <!--    拦截请求-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--    被拦截controller-->
+            <mvc:mapping path="/emp/**"/>
+            <!--    被排除拦截controller-->
+            <mvc:exclude-mapping path="/user/**"/>
+            <ref bean="loginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--配置全局异常处理 -->
+    <!--<bean class="cn.baizhi.resolver.GlobalExceptionResolver"/>-->
+</beans>

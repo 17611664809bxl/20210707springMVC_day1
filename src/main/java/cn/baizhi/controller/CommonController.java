@@ -18,6 +18,9 @@ public class CommonController {
     //生成验证码
     @GetMapping("authImg")
     public void authImg(HttpSession session, HttpServletResponse response) throws IOException {
+
+        System.out.println("dsfsdfsdfsdfsdf");
+
         //生成验证码
         String securityCode = AuthImg.getSecurityCode();
         //将验证码放入session

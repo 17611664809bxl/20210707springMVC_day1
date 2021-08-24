@@ -20,6 +20,7 @@ public class CommonController {
     public void authImg(HttpSession session, HttpServletResponse response) throws IOException {
 
         System.out.println("dsfsdfsdfsdfsdf");
+        System.out.println("dsfsdfsdfsdfsdf");
 
         //生成验证码
         String securityCode = AuthImg.getSecurityCode();

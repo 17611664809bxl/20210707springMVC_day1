@@ -21,6 +21,7 @@ public class CommonController {
 
         System.out.println("dsfsdfsdfsdfsdf");
         System.out.println("dsfsdfsdfsdfsdf");
+        System.out.println("dsfsdfsdfsdfsdf");
 
         //生成验证码
         String securityCode = AuthImg.getSecurityCode();
